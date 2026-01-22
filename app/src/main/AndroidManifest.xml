@@ -12,6 +12,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GastosGo">
         <activity
+            android:name=".DetalleGastos"
+            android:exported="false" />
+        <activity
+            android:name=".ListadoGastos"
+            android:exported="false" />
+        <activity
+            android:name=".NuevoGasto"
+            android:exported="false" />
+        <activity
+            android:name=".Registrar"
+            android:exported="false" />
+        <activity
+            android:name=".Login"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
