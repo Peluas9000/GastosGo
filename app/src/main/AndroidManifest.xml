@@ -12,22 +12,22 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GastosGo">
         <activity
-            android:name=".DetalleGastos"
+            android:name=".ui.DetalleGastoActivity"
             android:exported="false" />
         <activity
-            android:name=".ListadoGastos"
+            android:name=".ui.ListadoGastosActivity"
             android:exported="false" />
         <activity
-            android:name=".NuevoGasto"
+            android:name=".ui.NuevoGastoActivity"
             android:exported="false" />
         <activity
-            android:name=".Registrar"
+            android:name=".ui.RegistrarActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.MainActivity"
             android:exported="false" />
         <activity
-            android:name=".Login"
+            android:name=".ui.Login"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
