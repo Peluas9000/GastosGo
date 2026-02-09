@@ -27,37 +27,5 @@ class MainActivity : AppCompatActivity() {
         findViewById<TextView>(R.id.tvBienvenida).text = "Hola, $usuarioActual"
         tvResumen = findViewById(R.id.tvResumen)
 
-        // Botones
-        findViewById<MaterialButton>(R.id.btnNuevaAnotacion).setOnClickListener {
-            val intent = Intent(this, NuevoGastoActivity::class.java)
-            intent.putExtra("USUARIO_ACTUAL", usuarioActual)
-            startActivity(intent)
-        }
-
-        findViewById<MaterialButton>(R.id.btnVerDiario).setOnClickListener {
-            val intent = Intent(this, ListadoGastosActivity::class.java)
-            intent.putExtra("USUARIO_ACTUAL", usuarioActual)
-            startActivity(intent)
-        }
-    }
-
-    override fun onResume() {
-        super.onResume()
-        cargarSaldo()
-    }
-
-    private fun cargarSaldo() {
-        val db = GastosDatabase.getDatabase(this)
-        lifecycleScope.launch {
-            val total = db.gastoDao().obtenerTotalGastado(usuarioActual) ?: 0.0
-            tvResumen.text = "${String.format("%.2f", total)} €"
-
-            // Cambiar color si gastamos mucho (Lógica visual)
-            if (total > 500) {
-                tvResumen.setTextColor(getColor(R.color.colorGasto)) // Rojo
-            } else {
-                tvResumen.setTextColor(getColor(R.color.primaryColor)) // Verde
-            }
-        }
     }
 }

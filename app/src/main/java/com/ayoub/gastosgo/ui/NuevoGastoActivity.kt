@@ -38,45 +38,6 @@ class NuevoGastoActivity : AppCompatActivity() {
         val fechaHoy = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(Date())
         findViewById<TextView>(R.id.tvFechaHoraActual).text = fechaHoy
 
-        // 1. CARGAR CATEGORÍAS EN EL SPINNER (Requisito BD relacionada)
-        lifecycleScope.launch {
-            listaCategorias = db.categoriaDao().obtenerTodas()
-            val nombresCategorias = listaCategorias.map { it.nombre }
 
-            val adapter = ArrayAdapter(this@NuevoGastoActivity, android.R.layout.simple_spinner_item, nombresCategorias)
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            spinner.adapter = adapter
-        }
-
-        findViewById<MaterialButton>(R.id.btnGuardar).setOnClickListener {
-            val cantidadStr = etCantidad.text.toString()
-            val concepto = etConcepto.text.toString()
-
-            if (cantidadStr.isNotEmpty() && listaCategorias.isNotEmpty()) {
-                val cantidad = cantidadStr.toDouble()
-
-                // Obtener ID de la categoría seleccionada
-                val posicion = spinner.selectedItemPosition
-                val idCategoria = listaCategorias[posicion].id
-
-                lifecycleScope.launch {
-                    val nuevoGasto = Gasto(
-                        usuarioAutor = usuarioActual,
-                        categoriaId = idCategoria,
-                        concepto = concepto,
-                        fecha = fechaHoy,
-                        hora = SimpleDateFormat("HH:mm", Locale.getDefault()).format(Date()),
-                        cantidad = cantidad
-                    )
-                    db.gastoDao().insertarGasto(nuevoGasto)
-                    Toast.makeText(this@NuevoGastoActivity, "Gasto guardado", Toast.LENGTH_SHORT).show()
-                    finish()
-                }
-            } else {
-                Toast.makeText(this, "Rellena la cantidad", Toast.LENGTH_SHORT).show()
-            }
-        }
-
-        findViewById<MaterialButton>(R.id.btnCancelar).setOnClickListener { finish() }
     }
 }

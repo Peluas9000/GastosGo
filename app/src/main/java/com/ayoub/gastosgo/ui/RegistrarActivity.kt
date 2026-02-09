@@ -24,28 +24,7 @@ class RegistrarActivity : AppCompatActivity() {
 
         val db = GastosDatabase.getDatabase(this)
 
-        btnCrear.setOnClickListener {
-            val user = etUser.text.toString()
-            val pass = etPass.text.toString()
-            val confirm = etConfirm.text.toString()
 
-            if (pass == confirm && user.isNotEmpty()) {
-                lifecycleScope.launch {
-                    try {
-                        // CIFRAMOS antes de guardar
-                        val passHash = Cifrado.hashSHA256(pass)
-                        val nuevoUsuario = Usuario(user, passHash)
-                        db.usuarioDao().registrarUsuario(nuevoUsuario)
 
-                        Toast.makeText(this@RegistrarActivity, "Registrado. Ahora inicia sesión.", Toast.LENGTH_LONG).show()
-                        finish()
-                    } catch (e: Exception) {
-                        Toast.makeText(this@RegistrarActivity, "El usuario ya existe", Toast.LENGTH_SHORT).show()
-                    }
-                }
-            } else {
-                Toast.makeText(this, "Revisa los campos", Toast.LENGTH_SHORT).show()
-            }
-        }
     }
 }
