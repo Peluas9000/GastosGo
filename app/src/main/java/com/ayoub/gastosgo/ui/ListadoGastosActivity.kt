@@ -1,17 +1,10 @@
-package com.example.gastosgo.ui
+package com.ayoub.gastosgo.ui
 
-import android.content.Intent
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
 import android.widget.ListView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.lifecycleScope
 import com.ayoub.gastosgo.R
-import com.ayoub.gastosgo.ui.DetalleGastoActivity
 import com.example.gastosgo.data.GastosDatabase
-import kotlinx.coroutines.launch
 
 class ListadoGastosActivity : AppCompatActivity() {
 

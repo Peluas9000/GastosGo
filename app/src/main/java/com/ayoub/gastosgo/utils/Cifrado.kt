@@ -1,4 +1,4 @@
-package com.example.gastosgo.utils
+package com.ayoub.gastosgo.utils
 
 import java.security.MessageDigest
 

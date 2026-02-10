@@ -1,19 +1,13 @@
-package com.example.gastosgo.ui
+package com.ayoub.gastosgo.ui
 
 import android.os.Bundle
-import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.lifecycleScope
 import com.ayoub.gastosgo.R
 import com.example.gastosgo.data.Categoria
-import com.example.gastosgo.data.Gasto
 import com.example.gastosgo.data.GastosDatabase
-import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
-import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale

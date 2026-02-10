@@ -1,4 +1,4 @@
-package com.example.gastosgo.ui
+package com.ayoub.gastosgo.ui
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -35,7 +35,7 @@ class GastosAdapter(
 
         // Truco visual: Poner el precio en rojo si es muy alto
         if (gasto.cantidad > 100) {
-            tvCantidad.setTextColor(ContextCompat.getColor(mContext, R.color.colorGasto))
+            tvCantidad.setTextColor(ContextCompat.getColor(mContext, R.color.rojo))
         } else {
             tvCantidad.setTextColor(ContextCompat.getColor(mContext, R.color.primaryColor))
         }

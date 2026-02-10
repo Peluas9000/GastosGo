@@ -1,17 +1,9 @@
-package com.example.gastosgo
+package com.ayoub.gastosgo.ui
 
-import android.content.Intent
 import android.os.Bundle
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.lifecycleScope
 import com.ayoub.gastosgo.R
-import com.example.gastosgo.data.GastosDatabase
-import com.example.gastosgo.ui.ListadoGastosActivity
-import com.example.gastosgo.ui.NuevoGastoActivity
-import com.google.android.material.button.MaterialButton
-import com.google.android.material.card.MaterialCardView
-import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
     private lateinit var usuarioActual: String
