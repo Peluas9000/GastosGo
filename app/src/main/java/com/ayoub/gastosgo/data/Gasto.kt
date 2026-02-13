@@ -1,5 +1,4 @@
-package com.example.gastosgo.data
-
+package com.ayoub.gastosgo.data
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.PrimaryKey

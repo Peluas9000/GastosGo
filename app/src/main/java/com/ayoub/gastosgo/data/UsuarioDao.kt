@@ -1,5 +1,4 @@
-package com.example.gastosgo.data
-
+package com.ayoub.gastosgo.data
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy

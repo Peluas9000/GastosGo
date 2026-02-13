@@ -8,8 +8,8 @@ import android.widget.ArrayAdapter
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import com.ayoub.gastosgo.R
+import com.ayoub.gastosgo.data.Gasto
 
-import com.example.gastosgo.data.Gasto
 
 class GastosAdapter(
     private val mContext: Context,
@@ -31,14 +31,16 @@ class GastosAdapter(
         // 4. Asignar datos
         tvConcepto.text = gasto.concepto
         tvFecha.text = gasto.fecha
-        tvCantidad.text = "${String.format("%.2f", gasto.cantidad)} €"
+        // CAMBIO 1: Añadimos el signo "-" manualmente al texto
+        tvCantidad.text = "- ${String.format("%.2f", gasto.cantidad)} €"
 
-        // Truco visual: Poner el precio en rojo si es muy alto
-        if (gasto.cantidad > 100) {
-            tvCantidad.setTextColor(ContextCompat.getColor(mContext, R.color.rojo))
-        } else {
-            tvCantidad.setTextColor(ContextCompat.getColor(mContext, R.color.primaryColor))
-        }
+        // CAMBIO 2: Forzamos el color ROJO para todos (porque son gastos)
+        // Usamos 'holo_red_dark' que ya viene en Android, o tu color personalizado si lo prefieres
+        tvCantidad.setTextColor(ContextCompat.getColor(mContext, android.R.color.holo_red_dark))
+
+
+        //
+
 
         return layout
     }

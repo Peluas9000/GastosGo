@@ -2,10 +2,10 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/fondoApp"
-    android:id="@+id/main"
     android:fillViewport="true">
 
     <LinearLayout
@@ -17,11 +17,11 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
             android:text="Nuevo Movimiento"
             android:textColor="@color/textoTitulo"
             android:textSize="24sp"
-            android:textStyle="bold"
-            android:layout_marginBottom="24dp"/>
+            android:textStyle="bold" />
 
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
@@ -39,36 +39,35 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
                     android:gravity="center_vertical"
-                    android:layout_marginBottom="24dp">
+                    android:layout_marginBottom="24dp"
+                    android:orientation="horizontal">
 
                     <ImageView
                         android:layout_width="24dp"
                         android:layout_height="24dp"
+                        android:layout_marginEnd="8dp"
                         android:src="@android:drawable/ic_menu_my_calendar"
-                        app:tint="@color/primaryColor"
-                        android:layout_marginEnd="8dp"/>
+                        app:tint="@color/primaryColor" />
 
                     <TextView
                         android:id="@+id/tvFechaHoraActual"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="22/01/2026"
-                        android:textSize="16sp"
                         android:textColor="@color/primaryColor"
+                        android:textSize="16sp"
                         android:textStyle="bold"
                         tools:text="22/01/2026 - 10:30" />
                 </LinearLayout>
 
-
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:alpha="0.7"
                     android:text="¿Cuánto has gastado?"
-                    android:textSize="14sp"
                     android:textColor="@color/textoTitulo"
-                    android:alpha="0.7"/>
+                    android:textSize="14sp" />
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
@@ -81,20 +80,20 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@android:color/transparent"
+                        android:gravity="center_horizontal"
                         android:hint="0.00"
                         android:inputType="numberDecimal"
+                        android:padding="16dp"
                         android:textColor="@color/primaryColor"
                         android:textSize="48sp"
-                        android:textStyle="bold"
-                        android:gravity="center_horizontal"
-                        android:padding="16dp"/>
+                        android:textStyle="bold" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="2dp"
-                    android:background="@color/fondoApp"
-                    android:layout_marginBottom="24dp"/>
+                    android:layout_marginBottom="24dp"
+                    android:background="@color/fondoApp" />
 
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -109,26 +108,27 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="textCapSentences"
-                        android:maxLines="1"/>
+                        android:maxLines="1" />
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <Space android:layout_width="match_parent" android:layout_height="16dp"/>
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="16dp" />
 
-                <com.google.android.material.textfield.TextInputLayout
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Categoría (Ej: Comida, Ocio)"
-                    app:boxStrokeColor="@color/primaryColor"
-                    app:hintTextColor="@color/primaryColor">
+                    android:text="Categoría"
+                    android:textSize="12sp"
+                    android:textColor="@color/primaryColor"
+                    android:layout_marginBottom="4dp"/>
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/etCategoria"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="textCapWords"
-                        android:maxLines="1"/>
-                </com.google.android.material.textfield.TextInputLayout>
+                <Spinner
+                    android:id="@+id/spinnerCategorias"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:spinnerMode="dropdown"
+                    android:background="@android:drawable/btn_dropdown" />
 
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
@@ -138,20 +138,20 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_marginTop="32dp"
+            android:backgroundTint="@color/primaryColor"
             android:text="Guardar Gasto"
             android:textSize="18sp"
             android:textStyle="bold"
-            app:cornerRadius="12dp"
-            android:backgroundTint="@color/primaryColor"/>
+            app:cornerRadius="12dp" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnCancelar"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="Cancelar"
-            android:textColor="@color/textoTitulo"
-            style="@style/Widget.MaterialComponents.Button.TextButton"/>
+            android:textColor="@color/textoTitulo" />
 
     </LinearLayout>
 </ScrollView>

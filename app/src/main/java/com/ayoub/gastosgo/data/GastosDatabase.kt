@@ -1,22 +1,25 @@
-package com.example.gastosgo.data
-
+package com.ayoub.gastosgo.data
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
+import com.ayoub.gastosgo.data.GastoDao
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 // Definimos las 3 entidades y subimos la versión por si hubiese cambios futuros
-@Database(entities = [Usuario::class, Gasto::class, Categoria::class], version = 1, exportSchema = false)
+@Database(entities = [Usuario::class, Gasto::class, Categoria::class,Banco::class], version = 1, exportSchema = false)
 abstract class GastosDatabase : RoomDatabase() {
 
     abstract fun usuarioDao(): UsuarioDao
     abstract fun gastoDao(): GastoDao
     abstract fun categoriaDao(): CategoriaDao
 
+    abstract fun bancoDao(): BancoDao
+
+    // SINGLETON
     companion object {
         @Volatile
         private var INSTANCE: GastosDatabase? = null

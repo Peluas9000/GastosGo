@@ -94,7 +94,7 @@
         android:layout_marginBottom="16dp"/>
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnNuevaAnotacion"
+        android:id="@+id/btnNuevoGasto"
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:layout_marginBottom="16dp"
@@ -108,7 +108,7 @@
         app:iconSize="24dp" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnVerDiario"
+        android:id="@+id/btnVerHistorial"
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:text="Ver Todos los Movimientos"
