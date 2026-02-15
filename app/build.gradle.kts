@@ -52,4 +52,6 @@ dependencies {
     implementation("androidx.room:room-runtime:$room_version")
     implementation("androidx.room:room-ktx:$room_version") // Vital para usar corrutinas
     ksp("androidx.room:room-compiler:$room_version")       // El compilador
+
+    implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
 }

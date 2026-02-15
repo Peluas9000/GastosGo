@@ -54,7 +54,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
-                android:text="GASTO TOTAL ACUMULADO"
+                android:text="SALDO RESTANTE"
                 android:textAllCaps="true"
                 android:textColor="@color/black"
                 android:alpha="0.5"
@@ -123,4 +123,11 @@
         app:iconTint="@color/primaryColor"
         app:strokeColor="@color/primaryColor"
         app:strokeWidth="2dp" />
+
+    <com.github.mikephil.charting.charts.PieChart
+        android:id="@+id/graficoPastel"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:minHeight="300dp" />
+
 </LinearLayout>

@@ -5,6 +5,10 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 
+data class GastoPorCategoria(
+    val categoriaNombre: String,
+    val totalCantidad: Double
+)
 @Dao
 interface GastoDao {
     @Insert
@@ -25,4 +29,14 @@ interface GastoDao {
     // --- ¡ESTA ES LA LÍNEA QUE TE FALTA! AÑÁDELA AQUÍ ABAJO ---
     @Query("SELECT * FROM gastos WHERE id = :id")
     suspend fun obtenerGastoPorId(id: Int): Gasto?
+
+    // NUEVA CONSULTA: Suma los gastos agrupados por categoría
+    @Query("""
+        SELECT c.nombre AS categoriaNombre, SUM(g.cantidad) AS totalCantidad
+        FROM gastos g
+        INNER JOIN categorias c ON g.categoriaId = c.id
+        WHERE g.usuarioAutor = :usuario
+        GROUP BY c.id
+    """)
+    suspend fun obtenerGastosPorCategoria(usuario: String): List<GastoPorCategoria>
 }

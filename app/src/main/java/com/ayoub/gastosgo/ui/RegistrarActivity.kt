@@ -45,8 +45,8 @@ class RegistrarActivity : AppCompatActivity() {
             // INSERTAR EN BASE DE DATOS
             lifecycleScope.launch {
                 try {
-                    val passCifrada = Cifrado.cifrar(pass)
-                    val nuevoUsuario = Usuario(user, passCifrada)
+
+                    val nuevoUsuario = Usuario(user,pass)
                     db.usuarioDao().registrarUsuario(nuevoUsuario)
 
                     // --- NUEVO CÓDIGO: ASIGNAR SALDO INICIAL ---

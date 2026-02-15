@@ -1,12 +1,18 @@
 package com.ayoub.gastosgo.ui
 
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.ayoub.gastosgo.R
 import com.ayoub.gastosgo.data.GastosDatabase
+import com.github.mikephil.charting.charts.PieChart
+import com.github.mikephil.charting.data.PieData
+import com.github.mikephil.charting.data.PieDataSet
+import com.github.mikephil.charting.data.PieEntry
+import com.github.mikephil.charting.utils.ColorTemplate
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.coroutines.launch
@@ -15,7 +21,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var usuarioActual: String
     private lateinit var tvResumen: TextView
-
+    private lateinit var graficoPastel: PieChart
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -27,6 +33,8 @@ class MainActivity : AppCompatActivity() {
         val tvBienvenida = findViewById<TextView>(R.id.tvBienvenida)
         tvResumen = findViewById(R.id.tvResumen) // Asegúrate que tu TextView del dinero tiene este ID
         val fabNuevo = findViewById<MaterialButton>(R.id.btnNuevoGasto) // O Button normal
+        // 2. Vincular gráfico
+        graficoPastel = findViewById(R.id.graficoPastel)
 
         tvBienvenida.text = "Hola, $usuarioActual"
 
@@ -45,6 +53,8 @@ class MainActivity : AppCompatActivity() {
             intent.putExtra("USUARIO_ACTUAL", usuarioActual)
             startActivity(intent)
         }
+
+        cargarDatosGrafico()
     }
 
     // 4. ACTUALIZAR SALDO AL VOLVER
@@ -52,12 +62,57 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         calcularSaldo()
+        cargarDatosGrafico() // 3. Cargar datos al volver
+    }
+
+    private fun configurarGrafico() {
+        graficoPastel.description.isEnabled = false // Quitar texto descriptivo pequeño
+        graficoPastel.isDrawHoleEnabled = true // Hacerlo tipo "Donut"
+        graficoPastel.setHoleColor(Color.TRANSPARENT)
+        graficoPastel.setEntryLabelColor(Color.BLACK) // Color de las letras dentro del pastel
+        graficoPastel.setEntryLabelTextSize(12f)
+        graficoPastel.centerText = "Gastos"
+        graficoPastel.setCenterTextSize(18f)
+        graficoPastel.legend.isEnabled = false // Ocultamos leyenda si molesta
+    }
+
+    private fun cargarDatosGrafico() {
+        val db = GastosDatabase.getDatabase(this)
+        lifecycleScope.launch {
+            // Usamos la nueva query del DAO
+            val listaAgrupada = db.gastoDao().obtenerGastosPorCategoria(usuarioActual)
+
+            // Convertimos nuestros datos a "Entradas" del gráfico
+            val entradas = ArrayList<PieEntry>()
+
+            for (item in listaAgrupada) {
+                // (Valor numérico, Nombre Categoría)
+                entradas.add(PieEntry(item.totalCantidad.toFloat(), item.categoriaNombre))
+            }
+
+            if (entradas.isNotEmpty()) {
+                val dataSet = PieDataSet(entradas, "Categorías")
+
+                // Colores bonitos automáticos (Material Design)
+                dataSet.colors = ColorTemplate.MATERIAL_COLORS.toList()
+                dataSet.valueTextSize = 14f
+                dataSet.valueTextColor = Color.WHITE
+
+                val data = PieData(dataSet)
+                graficoPastel.data = data
+                graficoPastel.invalidate() // Refrescar gráfico
+                graficoPastel.animateY(1400) // Animación chula al aparecer
+            } else {
+                graficoPastel.clear() // Si no hay datos, limpiar
+            }
+        }
     }
 
         private fun calcularSaldo() {
             val db = GastosDatabase.getDatabase(this)
 
             lifecycleScope.launch {
+
                 // 1. Obtener TOTAL GASTADO (Lo que ya tenías)
                 val totalGastado = db.gastoDao().obtenerTotalGastado(usuarioActual) ?: 0.0
 
@@ -90,6 +145,8 @@ class MainActivity : AppCompatActivity() {
                     tvEstado?.text = "Finanzas saludables"
                 }
             }
+
+
 
     }
 }
