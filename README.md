@@ -24,7 +24,7 @@ El proyecto sigue un flujo de navegación lógico e intuitivo:
 3. **MainActivity**: Panel de control principal que muestra el resumen financiero actualizado en tiempo real y el gráfico de pastel.
 4. **NuevoGastoActivity**: Formulario dinámico para registrar transacciones con cantidad, concepto, categoría, fecha y hora.
 5. **ListadoGastosActivity**: Interfaz de tipo ListView que muestra todos los gastos del usuario.
-6. **DetalleGastoActivity**: Vista detallada de una transacción específica, permitiendo su eliminación o la descarga de la factura en PDF[cite: 1286, 1293].
+6. **DetalleGastoActivity**: Vista detallada de una transacción específica, permitiendo su eliminación o la descarga de la factura en PDF.
 
 ---
 
